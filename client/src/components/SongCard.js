@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import Button from '@mui/material/Button';
 
+
 function SongCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [ draggedTo, setDraggedTo ] = useState(0);
@@ -35,15 +36,18 @@ function SongCard(props) {
         store.addMoveSongTransaction(sourceIndex, targetIndex);
     }
     function handleRemoveSong(event) {
+        event.stopPropagation();
         store.showRemoveSongModal(index, song);
     }
     function handleClick(event) {
+        event.stopPropagation();
         // DOUBLE CLICK IS FOR SONG EDITING
         if (event.detail === 2) {
             console.log("double clicked");
             store.showEditSongModal(index, song);
         }
     }
+
 
     let cardClass = "list-card unselected-list-card";
     return (

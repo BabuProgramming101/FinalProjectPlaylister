@@ -6,15 +6,21 @@ const Schema = mongoose.Schema
     
     @author McKilla Gorilla
 */
+
+
 const playlistSchema = new Schema(
     {
+        listens: { type: Number, required: true },
+        comments: {type: [{
+            message: String
+        }], required: true},
         name: { type: String, required: true },
         ownerEmail: { type: String, required: true },
         songs: { type: [{
             title: String,
             artist: String,
             youTubeId: String
-        }], required: true }
+        }], required: true },
     },
     { timestamps: true },
 )

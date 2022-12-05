@@ -9,7 +9,6 @@
     
     @author McKilla Gorilla
 */
-
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 const api = axios.create({
@@ -22,12 +21,14 @@ const api = axios.create({
 // WORK, AND SOME REQUIRE DATA, WHICH WE WE WILL FORMAT HERE, FOR WHEN
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
-export const createPlaylist = (newListName, newSongs, userEmail) => {
+export const createPlaylist = (playlistListens, playlistComments, newListName, newSongs, userEmail) => {
     return api.post(`/playlist/`, {
         // SPECIFY THE PAYLOAD
+        listens: playlistListens,
+        comments: playlistComments,
         name: newListName,
         songs: newSongs,
-        ownerEmail: userEmail
+        ownerEmail: userEmail,
     })
 }
 export const deletePlaylistById = (id) => api.delete(`/playlist/${id}`)
@@ -40,12 +41,13 @@ export const updatePlaylistById = (id, playlist) => {
     })
 }
 
+
 const apis = {
     createPlaylist,
     deletePlaylistById,
     getPlaylistById,
     getPlaylistPairs,
-    updatePlaylistById
+    updatePlaylistById,
 }
 
 export default apis

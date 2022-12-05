@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import api from './auth-request-api'
 
-const AuthContext = createContext();
+export const AuthContext = createContext({});
 console.log("create AuthContext: " + AuthContext);
 
 // THESE ARE ALL THE TYPES OF UPDATES TO OUR AUTH STATE THAT CAN BE PROCESSED
@@ -10,11 +10,13 @@ export const AuthActionType = {
     GET_LOGGED_IN: "GET_LOGGED_IN",
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
-    REGISTER_USER: "REGISTER_USER"
+    REGISTER_USER: "REGISTER_USER",
+    DECLARE_HOME: "DECLARE_HOME"
 }
 
 function AuthContextProvider(props) {
     const [auth, setAuth] = useState({
+        homeButton : false,
         user: null,
         loggedIn: false,
         errorMessage: null
@@ -28,6 +30,11 @@ function AuthContextProvider(props) {
     const authReducer = (action) => {
         const { type, payload } = action;
         switch (type) {
+            case AuthActionType.DECLARE_HOME: {
+                return setAuth({
+                    homeButton: payload
+                })
+            }
             case AuthActionType.GET_LOGGED_IN: {
                 return setAuth({
                     user: payload.user,
@@ -129,6 +136,13 @@ function AuthContextProvider(props) {
                 }
             })
         }
+    }
+
+    auth.setHomeButtonValue = function() {
+        authReducer({
+            type: AuthActionType.DECLARE_HOME,
+            payload: true
+        })
     }
 
     auth.logoutUser = async function() {

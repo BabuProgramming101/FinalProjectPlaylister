@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import AppBanner from './AppBanner';
 
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
@@ -37,6 +38,8 @@ export default function LoginScreen() {
     console.log(modalJSX);
 
     return (
+        <div>
+        <div id = "edit-login-banner"><AppBanner></AppBanner></div>
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
@@ -45,18 +48,17 @@ export default function LoginScreen() {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: 'url(https://static.displate.com/857x1200/displate/2021-09-09/acaf2be9f58d1c05de9e4e47c580ee00_0da6a981d11a923cf24cf3f465fa81cc.jpg)',
-                    backgroundRepeat: 'no-repeat',
+                    backgroundImage: 'url(https://media.tenor.com/no01nqqz-TYAAAAC/pochita-chainsaw-man.gif)',
                     backgroundColor: (t) =>
                         t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'middle',
                 }}
             />
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <Box
                     sx={{
-                        my: 8,
+                        my: 3,
                         mx: 4,
                         display: 'flex',
                         flexDirection: 'column',
@@ -69,7 +71,7 @@ export default function LoginScreen() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2, mr: 5 }}>
                         <TextField
                             margin="normal"
                             required
@@ -111,5 +113,6 @@ export default function LoginScreen() {
             </Grid>
             { modalJSX }
         </Grid>
+        </div>
     );
 }

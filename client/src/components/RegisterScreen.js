@@ -13,6 +13,7 @@ import Link from '@mui/material/Link';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import AppBanner from './AppBanner';
 
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
@@ -37,11 +38,13 @@ export default function RegisterScreen() {
     console.log(modalJSX);
 
     return (
-            <Container component="main" maxWidth="xs">
+        <div>
+            <div id = "edit-register-banner"><AppBanner sx = {{width: '80%', mt: 3}}></AppBanner></div>
+            <Container component="main" maxWidth="xl">
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 1,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -126,8 +129,9 @@ export default function RegisterScreen() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+                <Copyright sx={{ mt: 0 }} />
                 { modalJSX }
             </Container>
+        </div>
     );
 }

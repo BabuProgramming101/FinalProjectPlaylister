@@ -81,9 +81,6 @@ export default function AppBanner() {
     let menu = loggedOutMenu;
     if (auth.loggedIn) {
         menu = loggedInMenu;
-        if (store.currentList) {
-            editToolbar = <EditToolbar />;
-        }
     }
     
     function getAccountMenu(loggedIn) {
@@ -96,8 +93,8 @@ export default function AppBanner() {
     }
 
     return (
-        <Box sx={{flexGrow: 1}}>
-            <AppBar position="static">
+        <Box sx={{flexGrow: 3}}>
+            <AppBar position="relative">
                 <Toolbar>
                     <Typography                        
                         variant="h4"
@@ -105,7 +102,7 @@ export default function AppBanner() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <Link onClick={handleHouseClick} style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
+                        <Link onClick={handleHouseClick} style={{ textDecoration: 'none', color: 'white' }} to='/'>Playlister</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ height: "90px", display: { xs: 'none', md: 'flex' } }}>
